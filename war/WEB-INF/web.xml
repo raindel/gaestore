@@ -7,17 +7,6 @@
 
 	<!-- Servlets -->
 
-	<servlet>
-		<servlet-name>mapreduce</servlet-name>
-		<servlet-class>com.google.appengine.tools.mapreduce.MapReduceServlet</servlet-class>
-	</servlet>
-
-
-	<servlet-mapping>
-		<servlet-name>mapreduce</servlet-name>
-		<url-pattern>/mapreduce/*</url-pattern>
-	</servlet-mapping>
-
 	<!-- Default page to serve -->
 	<welcome-file-list>
 		<welcome-file>GenericEntity.html</welcome-file>
