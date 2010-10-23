@@ -10,7 +10,7 @@ import com.google.gwt.user.client.ui.Widget;
 
 public class RootView extends Composite implements IRootViewInterface {
 
-	private Label message = new Label("Hello");
+	private Label message = new Label();
 
 	public RootView() {
 		VerticalPanel mainPanel = new VerticalPanel();
