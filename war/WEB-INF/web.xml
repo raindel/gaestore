@@ -11,5 +11,13 @@
 	<welcome-file-list>
 		<welcome-file>GenericEntity.html</welcome-file>
 	</welcome-file-list>
+	<servlet>
+		<servlet-name>persistenceService</servlet-name>
+		<servlet-class>ru.anovopashin.server.PersistenceServiceImpl</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>persistenceService</servlet-name>
+		<url-pattern>/genericentity/users.rpc</url-pattern>
+	</servlet-mapping>
 
 </web-app>

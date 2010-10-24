@@ -8,6 +8,11 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 
+/**
+ * 
+ * @author anovopashin
+ * @version 1.0.0.0
+ */
 public class RootView extends Composite implements IRootViewInterface {
 
 	private Label message = new Label();

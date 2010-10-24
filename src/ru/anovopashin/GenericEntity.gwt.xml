@@ -15,7 +15,6 @@
 
   <!-- Specify the app entry point class.                         -->
   <entry-point class='com.mvp4g.client.Mvp4gEntryPoint'/>
-  <inherits name="com.googlecode.objectify.Objectify" />
   <inherits name="com.smartgwt.SmartGwt"/>
 
   <!-- Specify the paths for translatable code                    -->

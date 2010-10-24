@@ -1,5 +1,10 @@
 package ru.anovopashin.client;
 
+/**
+ * 
+ * @author anovopashin
+ * @version 1.0.0.0
+ */
 import ru.anovopashin.client.presenter.RootPresenter;
 import ru.anovopashin.client.view.RootView;
 
