@@ -34,7 +34,7 @@ public class PersistenceServiceImpl extends RemoteServiceServlet implements Pers
 
 	}
 
-	private List<XNodeModel> saveNodes(XNodeModel... models) {
+	public List<XNodeModel> saveNodes(XNodeModel... models) {
 		DatastoreService datastoreService = DatastoreServiceFactory.getDatastoreService();
 
 		List<Entity> entityList = new ArrayList<Entity>();
