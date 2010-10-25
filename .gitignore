@@ -1,7 +1,2 @@
-/.classpath
-/.project
+/war/WEB-INF/classes/.settings
 /.settings
-/.classpath
-/.project
-
-/war/WEB-INF/classes
