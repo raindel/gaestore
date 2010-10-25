@@ -1,16 +1,16 @@
 package ru.anovopashin.server;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.jdo.PersistenceManager;
+
 import ru.anovopashin.client.service.PersistenceService;
-import ru.anovopashin.server.model.XNode;
+import ru.anovopashin.server.datastore.PMF;
+import ru.anovopashin.server.model.Root;
+import ru.anovopashin.shared.model.RootModel;
 import ru.anovopashin.shared.model.XNodeModel;
 
-import com.google.appengine.api.datastore.DatastoreService;
-import com.google.appengine.api.datastore.DatastoreServiceFactory;
-import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
@@ -24,34 +24,27 @@ public class PersistenceServiceImpl extends RemoteServiceServlet implements Pers
 
 	private static final long serialVersionUID = 5383572699097970490L;
 
-	public XNodeModel saveNode(XNodeModel model) {
-		DatastoreService datastoreService = DatastoreServiceFactory.getDatastoreService();
+	public RootModel saveNode(RootModel root) {
+		PersistenceManager manager = PMF.get().getPersistenceManager();
+		Root rootJDO = getRootJDO(root);
+		try {
+			manager.makePersistent(rootJDO);
+			root.setId(KeyFactory.keyToString(rootJDO.getId()));
+		} finally {
+			manager.close();
+		}
+		return root;
+	}
 
-		Entity entity = new XNode(model).getEntity();
-		Key key = datastoreService.put(entity);
-		model.setId(KeyFactory.keyToString(key));
-		return model;
-
+	private Root getRootJDO(RootModel model) {
+		Key key = KeyFactory.createKey(Root.class.getSimpleName(), Root.class.getSimpleName());
+		Root rootJDO = new Root(key, key, key, null, model.getName(), model.getDescription(), model.getSortCode(),
+				null, model.getDateEntry(), null, model.getUpdateEntry());
+		return rootJDO;
 	}
 
 	public List<XNodeModel> saveNodes(XNodeModel... models) {
-		DatastoreService datastoreService = DatastoreServiceFactory.getDatastoreService();
-
-		List<Entity> entityList = new ArrayList<Entity>();
-
-		for (XNodeModel model : models) {
-			Entity entity = new XNode(model).getEntity();
-			entityList.add(entity);
-		}
-
-		List<Key> keyList = datastoreService.put(entityList);
-
-		for (int i = 0; i < keyList.size(); i++) {
-			models[i].setId(KeyFactory.keyToString(keyList.get(i)));
-		}
 
 		return Arrays.asList(models);
-
 	}
-
 }

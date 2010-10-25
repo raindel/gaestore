@@ -4,8 +4,7 @@ import ru.anovopashin.client.Bus;
 import ru.anovopashin.client.presenter.view_interface.IRootViewInterface;
 import ru.anovopashin.client.service.PersistenceServiceAsync;
 import ru.anovopashin.client.view.RootView;
-import ru.anovopashin.shared.model.NodeFactory;
-import ru.anovopashin.shared.model.XNodeModel;
+import ru.anovopashin.shared.model.RootModel;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.Window;
@@ -28,7 +27,7 @@ public class RootPresenter extends BasePresenter<IRootViewInterface, Bus> {
 	 * Start Application point
 	 */
 	public void onStart() {
-		AsyncCallback<XNodeModel> callback = new AsyncCallback<XNodeModel>() {
+		AsyncCallback<RootModel> callback = new AsyncCallback<RootModel>() {
 			public void onFailure(Throwable caught) {
 				String details = caught.getMessage();
 				Window.alert("RPC to saveNode() failed.");
@@ -36,13 +35,15 @@ public class RootPresenter extends BasePresenter<IRootViewInterface, Bus> {
 
 			}
 
-			public void onSuccess(XNodeModel model) {
-				view.getMessage().setText("Hello event: " + model.getId());
+			@Override
+			public void onSuccess(RootModel result) {
+				view.getMessage().setText(view.getMessage().getText() + "\n" + result.getId());
 			}
 		};
 
-		XNodeModel xNodeModel = NodeFactory.getRootNode();
-		persistenceService.saveNode(xNodeModel, callback);
+		RootModel root = new RootModel();
+		root.setDescription("This is JDO");
+		persistenceService.saveNode(root, callback);
 
 		view.getMessage().setText(view.getMessage().getText() + "\nDONE!");
 

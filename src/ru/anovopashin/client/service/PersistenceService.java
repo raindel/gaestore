@@ -1,6 +1,6 @@
 package ru.anovopashin.client.service;
 
-import ru.anovopashin.shared.model.XNodeModel;
+import ru.anovopashin.shared.model.RootModel;
 
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
@@ -13,5 +13,5 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 @RemoteServiceRelativePath("users.rpc")
 public interface PersistenceService extends RemoteService {
 
-	public XNodeModel saveNode(XNodeModel model);
+	public RootModel saveNode(RootModel root);
 }

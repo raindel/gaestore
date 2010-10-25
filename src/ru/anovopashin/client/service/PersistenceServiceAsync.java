@@ -1,6 +1,6 @@
 package ru.anovopashin.client.service;
 
-import ru.anovopashin.shared.model.XNodeModel;
+import ru.anovopashin.shared.model.RootModel;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 
@@ -10,6 +10,6 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
  * @version 1.0.0.0
  */
 public interface PersistenceServiceAsync {
-	public void saveNode(XNodeModel model, AsyncCallback<XNodeModel> callback);
+	public void saveNode(RootModel model, AsyncCallback<RootModel> callback);
 
 }
